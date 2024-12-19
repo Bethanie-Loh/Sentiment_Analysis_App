@@ -70,11 +70,11 @@ class _TabContainerScreenState extends State<TabContainerScreen> {
       height: 45,
       child: Column(
         children: [
-          Icon(icon, color: isSelected ? AppColors.beige : AppColors.white),
+          Icon(icon, color: isSelected ? AppColors.orange : AppColors.white),
           Text(
             label,
             style: AppTextStyles.bold_12.copyWith(
-              color: isSelected ? AppColors.beige : AppColors.white,
+              color: isSelected ? AppColors.orange : AppColors.white,
             ),
           ),
         ],

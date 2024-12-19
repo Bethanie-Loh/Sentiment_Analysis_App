@@ -16,6 +16,13 @@ class AppTextStyles {
       fontWeight: FontWeight.w400,
       fontStyle: FontStyle.italic);
 
+  static const TextStyle regular_gray_12 = TextStyle(
+      fontFamily: 'Lexend',
+      color: Color.fromARGB(255, 131, 128, 128),
+      fontSize: 12,
+      fontWeight: FontWeight.w400,
+      fontStyle: FontStyle.normal);
+
   static const TextStyle regular_12 = TextStyle(
       fontFamily: 'Lexend',
       color: AppColors.black,
@@ -103,14 +110,14 @@ class AppTextStyles {
   static const TextStyle inputText = TextStyle(
       fontFamily: 'Lexend',
       color: AppColors.black,
-      fontSize: 16,
-      fontWeight: FontWeight.w700,
+      fontSize: 14,
+      fontWeight: FontWeight.w600,
       fontStyle: FontStyle.normal);
 
   static const TextStyle hintInputText = TextStyle(
       fontFamily: 'Lexend',
       color: AppColors.gray,
-      fontSize: 16,
+      fontSize: 14,
       fontWeight: FontWeight.w500,
       fontStyle: FontStyle.italic);
 
@@ -118,12 +125,12 @@ class AppTextStyles {
       fontFamily: 'Lexend',
       color: AppColors.black,
       fontSize: 12,
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w300,
       fontStyle: FontStyle.italic);
 
   static const TextStyle italic_14 = TextStyle(
       fontFamily: 'Lexend',
-      color: AppColors.white,
+      color: AppColors.black,
       fontSize: 14,
       fontWeight: FontWeight.w400,
       fontStyle: FontStyle.italic);

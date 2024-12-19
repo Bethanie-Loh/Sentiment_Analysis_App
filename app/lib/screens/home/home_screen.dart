@@ -13,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final List<GData> _chartData = [
     GData('Positive', 40, AppColors.green),
-    GData('Neutral', 30, AppColors.beige),
+    GData('Neutral', 30, AppColors.blue),
     GData('Negative', 20, AppColors.red),
   ];
 
