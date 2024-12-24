@@ -1,0 +1,36 @@
+id,name,category,rating,comment,userId,createdAt,sentiment,confidence,sentiment_score
+P00123,Wireless Earbuds,Electronics,5,Amazing sound quality! Comfortable fit.,GM8Tv9KcFA,2024-12-11,POSITIVE,0.8675939440727234,1.0
+P00456,Organic Coffee Beans,Grocery,5,"Lifesaver! Small and powerful, charges quickly.",uXbpvEYVtX,2024-12-05,POSITIVE,0.7632139325141907,1.0
+P00789,Cotton T-Shirt,Clothing,5,Beautiful and durable. Love the sustainable bamboo.,YVCZz4KNua,2024-12-12,POSITIVE,0.874940812587738,1.0
+P00102,Portable Charger,Electronics,4,"Smells great, leaves hair feeling clean and soft.",B3TbF6hoFj,2024-12-15,POSITIVE,0.39060044288635254,1.0
+P00135,Running Shoes,Shoes,5,"Easy to use, connects seamlessly to my computer.",5OQVKCnUan,2024-12-07,POSITIVE,0.7569804787635803,1.0
+P00168,Bamboo Cutting Board,Kitchen,5,"Fantastic! The sound is crystal clear, and the fit is perfect.",DtsS9yrJmq,2024-12-04,POSITIVE,0.9636184573173523,1.0
+P00191,Digital Camera,Electronics,5,"Perfect! Rich flavor, fresh aroma—worth every penny!",QDxZLYAdjK,2024-12-01,POSITIVE,0.9454059600830078,1.0
+P00214,Organic Shampoo,Beauty,5,"Excellent running shoes! Perfect fit, great support, and very durable.",aL4vjFWnIU,2024-12-11,POSITIVE,0.9579284191131592,1.0
+P00123,Wireless Earbuds,Electronics,5,Beautiful and super sturdy—my favorite kitchen purchase!,KPtx0LMY6K,2024-12-04,POSITIVE,0.9644419550895691,1.0
+P00260,Board Game,Games,5,Lovely scent and works well for my hair type.,YMEYSYc15T,2024-12-13,POSITIVE,0.5524688363075256,1.0
+P00123,Wireless Earbuds,Electronics,1,"Terrible! The sound keeps cutting out, and the battery life is awful.",wnvUwv8Mre,2024-12-03,NEGATIVE,0.9126855731010437,-1.0
+P00123,Wireless Earbuds,Electronics,1,"Poor quality fabric, ripped after one wash.",p5yH6ryolS,2024-12-05,NEGATIVE,0.6018006205558777,-1.0
+P00123,Wireless Earbuds,Electronics,2,"The fit is off, and it faded quickly after washing.",bTOamlqSow,2024-12-06,NEGATIVE,0.5189129114151001,-1.0
+P00123,Wireless Earbuds,Electronics,1,Stopped working after just one week—total waste of money!,sTDrHNHlMK,2024-12-02,NEGATIVE,0.931006133556366,-1.0
+P00123,Wireless Earbuds,Electronics,2,Charges slowly and gets very hot.,qFEWC9IgJU,2024-12-10,NEGATIVE,0.4585319757461548,-1.0
+P00456,Organic Coffee Beans,Grocery,2,"The design isn’t ergonomic, and it feels cheap.",XZXLplUB7x,2024-12-12,NEGATIVE,0.5395631194114685,-1.0
+P00456,Organic Coffee Beans,Grocery,3,"Works fine, but the clicks are louder than I’d like.",oZbCfshcev,2024-12-15,NEUTRAL,0.5409468412399292,0.0
+P00456,Organic Coffee Beans,Grocery,3,"The sound is okay, but they’re uncomfortable to wear for more than an hour.",NwI74NhJkE,2024-12-05,NEUTRAL,0.6738538146018982,0.0
+P00789,Cotton T-Shirt,Clothing,3,"Decent sound quality, but the connectivity isn’t very reliable.",ApSmcAdPDy,2024-12-14,NEUTRAL,0.7345624566078186,0.0
+P00789,Cotton T-Shirt,Clothing,3,"Okay product, but there are better shampoos for the price.",Aqe2UTM9wE,2024-12-12,NEUTRAL,0.8758060932159424,0.0
+P00102,Portable Charger,Electronics,4,"Good flavor, but a bit pricey.",spnv88yGjI,2024-12-04,POSITIVE,0.5170614719390869,1.0
+P00102,Portable Charger,Electronics,3,"Comfortable, but shrank slightly in the wash.",yuKwaHW8Kk,2024-12-04,NEUTRAL,0.5833197832107544,0.0
+P00102,Portable Charger,Electronics,3,"Comfortable, but could provide more support.",lCWiQ8vsoJ,2024-12-08,NEUTRAL,0.5438305139541626,0.0
+P00135,Running Shoes,Shoes,3,"Takes good pictures, but battery life could be better.",KLWPKF6VEx,2024-12-03,NEUTRAL,0.6259814500808716,0.0
+P00135,Running Shoes,Shoes,4,"Fun to play with friends, can be a bit challenging.",bY4DQnF2pb,2024-12-11,POSITIVE,0.6772686839103699,1.0
+P00168,Bamboo Cutting Board,Kitchen,4,"Great overall, just wish the case was a bit sturdier.",V7EEeKgity,2024-12-11,POSITIVE,0.7267462611198425,1.0
+P00168,Bamboo Cutting Board,Kitchen,3,"Average taste, not very aromatic compared to other organic brands.",qLMMkY9NOn,2024-12-11,NEUTRAL,0.6778948307037354,0.0
+P00168,Bamboo Cutting Board,Kitchen,3,"Really smooth flavor, but it’s a bit overpriced.",5sDvew62Ca,2024-12-04,NEUTRAL,0.4967515170574188,0.0
+P00191,Digital Camera,Electronics,3,"Looks nice, but it’s smaller than expected.",i186nlrNit,2024-12-05,NEUTRAL,0.6068034172058105,0.0
+P00191,Digital Camera,Electronics,3,"Decent pictures, but the controls are hard to figure out.",Na3lMVQ3OQ,2024-12-04,NEUTRAL,0.7447076439857483,0.0
+P00214,Organic Shampoo,Beauty,4,"Good image quality, though the battery could last longer.",x52eHiB2Wq,2024-12-13,POSITIVE,0.5217195153236389,1.0
+P00214,Organic Shampoo,Beauty,4,"Smooth and responsive, but it’s a bit small for my hands.",dFL9642Owf,2024-12-01,POSITIVE,0.6641656160354614,1.0
+P00789,Wireless Mouse,Electronics,4,"Comfortable and lightweight, though the arch support could be better.",CGRKJHebzK,2024-12-02,POSITIVE,0.5227798819541931,1.0
+P00789,Wireless Mouse,Electronics,4,"Great quality and eco-friendly, though it could be thicker.",r9NsVnddnz,2024-12-15,POSITIVE,0.6729099750518799,1.0
+P00789,Wireless Mouse,Electronics,3,"Works okay, but it’s bulkier than I expected.",zzPnPM7s6Q,2024-12-11,NEUTRAL,0.766112208366394,0.0
