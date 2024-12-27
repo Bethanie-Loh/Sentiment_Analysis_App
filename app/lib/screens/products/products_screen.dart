@@ -184,15 +184,22 @@ class ProductsScreenState extends ConsumerState<ProductsScreen> {
                     ),
                     const SizedBox(height: 24),
                     Expanded(
-                      child: ListView.builder(
+                       child: filteredProducts.isEmpty
+                          ? const Center(
+                              child: Text(
+                                'No products found with matching reviews',
+                                style: AppTextStyles.bold_16,
+                                textAlign: TextAlign.center,
+                              ),
+                            )
+                          : ListView.builder(
                         itemCount: filteredProducts.length,
                         itemBuilder: (context, index) {
                           final product = filteredProducts[index];
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 16),
                             child: ProductReviewCard(
-                              productId: product
-                                  .id, // Pass productId to the ProductReviewCard
+                              productId: product.id,
                             ),
                           );
                         },
@@ -262,7 +269,8 @@ class ProductsScreenState extends ConsumerState<ProductsScreen> {
 
   Widget _buildDateRangePicker(BuildContext context, WidgetRef ref) {
     final dateRange = ref.watch(selectedDateRangeProvider);
-
+    debugPrint('\n===== Date Picker Debug =====');
+    debugPrint('Current date range: ${dateRange?.start} to ${dateRange?.end}');
     return Row(
       children: [
         InkWell(
@@ -287,6 +295,8 @@ class ProductsScreenState extends ConsumerState<ProductsScreen> {
             );
 
             if (picked != null) {
+              debugPrint(
+                  'New date range selected: ${picked.start} to ${picked.end}');
               ref.read(selectedDateRangeProvider.notifier).state = picked;
             }
           },

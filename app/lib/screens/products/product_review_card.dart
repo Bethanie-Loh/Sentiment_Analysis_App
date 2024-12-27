@@ -43,7 +43,9 @@ class _ProductReviewCardState extends ConsumerState<ProductReviewCard> {
 
   @override
   Widget build(BuildContext context) {
-    final products = ref.watch(reviewNotifierProvider);
+    final products = ref.watch(filteredProductsProvider);
+    debugPrint('\n===== Product Review Card Debug =====');
+    debugPrint('Building card for product ID: ${widget.productId}');
 
     final product = products.firstWhere(
       (product) => product.id == widget.productId,
@@ -54,7 +56,8 @@ class _ProductReviewCardState extends ConsumerState<ProductReviewCard> {
           rating: 0.0,
           comments: []),
     );
-
+    debugPrint('Found product: ${product.name}');
+    debugPrint('Number of comments: ${product.comments.length}');
     final filteredComments = getFilteredComments(product.comments);
 
     Color cardColor = AppColors.pink;

@@ -8,8 +8,8 @@ import 'package:path_provider/path_provider.dart';
 class SentimentAnalysisService {
   final String baseUrl;
 
-  SentimentAnalysisService({this.baseUrl = 'http://10.1.104.60:5000'});
-  // SentimentAnalysisService({this.baseUrl = 'http://192.168.0.111:5000'});
+  // SentimentAnalysisService({this.baseUrl = 'http://10.1.104.60:5000'});
+  SentimentAnalysisService({this.baseUrl = 'http://192.168.0.111:5000'});
 
   Future<Map<String, dynamic>> analyzeCsv(File csvFile,
       {String? textColumn}) async {

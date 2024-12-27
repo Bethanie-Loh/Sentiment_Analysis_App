@@ -1,0 +1,35 @@
+id,name,category,rating,comment,userId,createdAt,sentiment,confidence,sentiment_score
+P00260,Board Game,Games,1,Very boring and overly complicated—nobody enjoyed it.,92kiZtoVxD,2024-12-11,NEGATIVE,0.5979905128479004,-1.0
+P00260,Board Game,Games,2,"Too many rules, and it takes forever to finish a game.",umjFRRB893,2024-12-04,NEGATIVE,0.3630920946598053,-1.0
+P00260,Board Game,Games,3,"Fun for a while, but it gets repetitive quickly.",LuVCrkJOKQ,2024-12-06,NEUTRAL,0.5920727849006653,0.0
+P00260,Board Game,Games,5,"Engaging and challenging, great for family game nights.",9mCX4BVkbI,2024-12-18,POSITIVE,0.6168633103370667,1.0
+P00260,Board Game,Games,5,Amazing game! Keeps everyone entertained for hours.,08BgCj8kI6,2024-12-08,POSITIVE,0.8929712772369385,1.0
+P00123,Wireless Earbuds,Electronics,1,"Terrible product! Constant connection issues, poor sound quality, and they stopped working after just a week.",A8Q0r3LSro,2024-12-26,NEGATIVE,0.9043335318565369,-1.0
+P00123,Wireless Earbuds,Electronics,1,"Uncomfortable and unreliable. The sound cuts out constantly, and the battery drains incredibly fast.",Ee8CNIIKRy,2024-12-11,NEGATIVE,0.7028055191040039,-1.0
+P00123,Wireless Earbuds,Electronics,3,"The sound is decent, but the connectivity could be better.",YUZw9sy20C,2024-12-13,NEUTRAL,0.6949693560600281,0.0
+P00456,Organic Coffee Beans,Grocery,5,"Really smooth flavor, nice aroma, and consistent quality.",pELF8ty8v1,2024-12-22,POSITIVE,0.6762045621871948,1.0
+P00456,Organic Coffee Beans,Grocery,5,"Absolutely fantastic coffee! Rich, full-bodied, and perfect every single time.",hcDeBIfRXd,2024-12-22,POSITIVE,0.9860242009162903,1.0
+P00456,Organic Coffee Beans,Grocery,5,Best organic coffee I've ever tried. Worth every penny!,pwkNn8ueCC,2024-12-14,POSITIVE,0.977325975894928,1.0
+P00789,Cotton T-Shirt,Clothing,2,Fabric feels cheap and ripped after one wash.,yYsibpNaBU,2024-12-04,NEGATIVE,0.5618817806243896,-1.0
+P00789,Cotton T-Shirt,Clothing,2,"The fit isn’t great, and it fades after a few washes.",r0pgj8uLSa,2024-12-17,NEGATIVE,0.49147796630859375,-1.0
+P00789,Cotton T-Shirt,Clothing,2,Shrinks easily and doesn’t feel durable.,AYVwLV6wwQ,2024-12-18,NEGATIVE,0.564078688621521,-1.0
+P00102,Portable Charger,Electronics,5,Works well as a charger and powers up devices fast.,JeVH0oRA67,2024-12-02,POSITIVE,0.5446063876152039,1.0
+P00102,Portable Charger,Electronics,5,"Compact and powerful, perfect for travel.",2Fl7OulY4b,2024-12-11,POSITIVE,0.8230079412460327,1.0
+P00102,Portable Charger,Electronics,5,"A reliable portable charger, very practical and handy.",x3qoLk51hE,2024-12-07,POSITIVE,0.7089587450027466,1.0
+P00135,Running Shoes,Shoes,4,Comfortable and lightweight for casual runs.,9mL6S4aYk4,2024-12-08,POSITIVE,0.5205168128013611,1.0
+P00135,Running Shoes,Shoes,5,Great running shoes with solid support.,3CWyqdtT82,2024-12-05,POSITIVE,0.7463008761405945,1.0
+P00135,Running Shoes,Shoes,5,"Feels amazing to run in, very comfortable.",knutxysegV,2024-12-04,POSITIVE,0.7174805998802185,1.0
+P00168,Bamboo Cutting Board,Kitchen,2,The cutting board warped after a few uses.,vdCRsWQLDT,2024-12-08,NEGATIVE,0.5046610832214355,-1.0
+P00168,Bamboo Cutting Board,Kitchen,2,"Not as durable as expected, scratches easily.",H0Ivlfm8Kq,2024-12-23,NEGATIVE,0.49799829721450806,-1.0
+P00168,Bamboo Cutting Board,Kitchen,3,Gets the job done but could be better.,fAfCIxGOq8,2024-12-20,NEUTRAL,0.6345593333244324,0.0
+P00191,Digital Camera,Electronics,5,Takes great pictures and has user-friendly features.,yldPNzTteW,2024-12-22,POSITIVE,0.6156536340713501,1.0
+P00191,Digital Camera,Electronics,5,Exceptional image quality and a great zoom feature.,SMQnCUji7T,2024-12-13,POSITIVE,0.9208459258079529,1.0
+P00191,Digital Camera,Electronics,5,"Love how professional the pictures come out, highly impressed.",0SXLnvyj9l,2024-12-05,POSITIVE,0.894842803478241,1.0
+P00214,Organic Shampoo,Beauty,2,The shampoo left my hair feeling dry and brittle.,BKXEl9tonE,2024-12-02,NEGATIVE,0.5299692749977112,-1.0
+P00214,Organic Shampoo,Beauty,2,"Not great for my hair type, left a sticky feeling.",l7bsselgtY,2024-12-11,NEGATIVE,0.5533038973808289,-1.0
+P00214,Organic Shampoo,Beauty,2,"Expected more for the price, didn’t deliver results.",gaGt0Wi3x2,2024-12-18,NEGATIVE,0.4774755835533142,-1.0
+P00789,Wireless Mouse,Electronics,5,Smooth tracking and connects seamlessly.,ODEzgPAedB,2024-12-16,POSITIVE,0.634442925453186,1.0
+P00789,Wireless Mouse,Electronics,5,"Comfortable and precise, works great for long hours.",VwekCnQkUu,2024-12-26,POSITIVE,0.6263982653617859,1.0
+P00789,Wireless Mouse,Electronics,5,"One of the best mice I've used so far, love it.",yLgXituJnT,2024-12-19,POSITIVE,0.9421569108963013,1.0
+P01617,Board Game,Games,3,The rules are a bit complicated to follow.,fcmXwFHOvx,2024-12-16,NEUTRAL,0.6377922296524048,0.0
+P01640,Board Game,Games,3,"The game is enjoyable, but it starts feeling repetitive after a while.",3u5SgjWuJE,2024-12-04,NEUTRAL,0.693344235420227,0.0

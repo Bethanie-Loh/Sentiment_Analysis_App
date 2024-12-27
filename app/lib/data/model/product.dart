@@ -15,6 +15,22 @@ class Product {
     required this.comments,
   });
 
+  Product copyWith({
+    String? id,
+    String? name,
+    String? category,
+    double? rating,
+    List<Comment>? comments,
+  }) {
+    return Product(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      category: category ?? this.category,
+      rating: rating ?? this.rating,
+      comments: comments ?? this.comments,
+    );
+  }
+
   factory Product.fromMap(Map<String, dynamic> product) {
     return Product(
       id: product['id'] as String,
@@ -33,9 +49,7 @@ class Product {
       'name': name,
       'category': category,
       'rating': rating,
-      'comments': comments
-          .map((comment) => comment.toMap())
-          .toList(), 
+      'comments': comments.map((comment) => comment.toMap()).toList(),
     };
   }
 }

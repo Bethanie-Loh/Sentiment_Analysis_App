@@ -1,23 +1,23 @@
 
 Sentiment Analysis Summary Report
 -------------------------------
-Total texts analyzed: 35
-Positive sentiments: 17 (48.6%)
-Neutral sentiments: 12 (34.3%)
-Negative sentiments: 6 (17.1%)
+Total texts analyzed: 34
+Positive sentiments: 17 (50.0%)
+Neutral sentiments: 5 (14.7%)
+Negative sentiments: 12 (35.3%)
 
 Rating Distribution:
-1 star: 3 (8.6%)
-2 stars: 3 (8.6%)
-3 stars: 12 (34.3%)
-4 stars: 8 (22.9%)
-5 stars: 9 (25.7%)
+1 star: 3 (8.8%)
+2 stars: 9 (26.5%)
+3 stars: 5 (14.7%)
+4 stars: 1 (2.9%)
+5 stars: 16 (47.1%)
 
-Average rating: 3.49
+Average rating: 3.53
 
 Confidence Scores:
-Average confidence: 0.691
-Median confidence: 0.674
-Min confidence: 0.391
-Max confidence: 0.964
+Average confidence: 0.672
+Median confidence: 0.635
+Min confidence: 0.363
+Max confidence: 0.986
         
