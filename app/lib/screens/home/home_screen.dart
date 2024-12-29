@@ -68,152 +68,157 @@ class HomeScreen extends ConsumerWidget {
             fit: BoxFit.cover,
           ),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "Amazing Online Store",
-                      style: AppTextStyles.appName,
-                    ),
-                    if (products.isEmpty && !isLoading)
-                      const Center(
-                        child: Text(
-                          "No data available. Please upload a CSV file.",
-                          style: AppTextStyles.italic_14,
-                        ),
-                      )
-                    else if (isLoading)
-                      const Center(child: AppLoading())
-                    else
-                      Center(
-                        child: SfCircularChart(
-                          title: ChartTitle(
-                            text: 'Overview of Sentiments',
-                            textStyle: AppTextStyles.bold_18,
-                          ),
-                          legend: Legend(
-                            isVisible: true,
-                            position: LegendPosition.bottom,
-                          ),
-                          tooltipBehavior: TooltipBehavior(enable: true),
-                          series: <CircularSeries>[
-                            PieSeries<GData, String>(
-                              dataSource: chartData,
-                              xValueMapper: (GData data, _) => data.x,
-                              yValueMapper: (GData data, _) => data.y,
-                              pointColorMapper: (GData data, _) => data.color,
-                              dataLabelSettings: const DataLabelSettings(
-                                isVisible: true,
-                                labelPosition: ChartDataLabelPosition.outside,
-                                textStyle: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    const SizedBox(height: 20),
-                    if (!isLoading && products.isNotEmpty)
-                      Text(
-                        'Number of reviews analyzed: ${totalReviews.toString()}',
-                        style: AppTextStyles.italic_14,
-                      ),
-                  ],
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Text(
+                  "Amazing Online Store",
+                  style: AppTextStyles.appName,
                 ),
-              ),
-              ElevatedButton.icon(
-                onPressed: isLoading
-                    ? null
-                    : () async {
-                        try {
-                          ref.read(isLoadingProvider.notifier).state = true;
-
-                          final result = await ref
-                              .read(reviewNotifierProvider.notifier)
-                              .uploadCSVFile(ref);
-
-                          if (context.mounted) {
-                            // Custom SnackBar with improved styling
-                            final snackBar = SnackBar(
-                              content: Text(
-                                result.message,
-                                style: AppTextStyles.italic_14,
-                              ),
-                              backgroundColor: result.success
-                                  ? AppColors.green
-                                  : AppColors.red,
-                              behavior: SnackBarBehavior.floating,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              margin: const EdgeInsets.all(20),
-                              duration: const Duration(seconds: 4),
-                            );
-
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(snackBar);
-                          }
-                        } catch (e) {
-                          if (context.mounted) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'Failed to upload CSV: $e',
-                                  style: const TextStyle(
-                                    color: Colors.white,
+                const SizedBox(height: 20),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const SizedBox(height: 20),
+                      if (products.isEmpty && !isLoading)
+                        const Center(
+                          child: Text(
+                            "No data available. Please upload a CSV file.",
+                            style: AppTextStyles.italic_14,
+                          ),
+                        )
+                      else if (isLoading)
+                        const Center(child: AppLoading())
+                      else
+                        Center(
+                          child: SfCircularChart(
+                            title: ChartTitle(
+                              text: 'Overview of Sentiments',
+                              textStyle: AppTextStyles.bold_18,
+                            ),
+                            legend: Legend(
+                              isVisible: true,
+                              position: LegendPosition.bottom,
+                            ),
+                            tooltipBehavior: TooltipBehavior(enable: true),
+                            series: <CircularSeries>[
+                              PieSeries<GData, String>(
+                                dataSource: chartData,
+                                xValueMapper: (GData data, _) => data.x,
+                                yValueMapper: (GData data, _) => data.y,
+                                pointColorMapper: (GData data, _) => data.color,
+                                dataLabelSettings: const DataLabelSettings(
+                                  isVisible: true,
+                                  labelPosition: ChartDataLabelPosition.outside,
+                                  textStyle: TextStyle(
+                                    fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                backgroundColor: AppColors.red.withOpacity(0.9),
+                              ),
+                            ],
+                          ),
+                        ),
+                      const SizedBox(height: 20),
+                      if (!isLoading && products.isNotEmpty)
+                        Text(
+                          'Number of reviews analyzed: ${totalReviews.toString()}',
+                          style: AppTextStyles.italic_14,
+                        ),
+                    ],
+                  ),
+                ),
+                ElevatedButton.icon(
+                  onPressed: isLoading
+                      ? null
+                      : () async {
+                          try {
+                            ref.read(isLoadingProvider.notifier).state = true;
+
+                            final result = await ref
+                                .read(reviewNotifierProvider.notifier)
+                                .uploadCSVFile(ref);
+
+                            if (context.mounted) {
+                              final snackBar = SnackBar(
+                                content: Text(
+                                  result.message,
+                                  style: AppTextStyles.italic_14,
+                                ),
+                                backgroundColor: result.success
+                                    ? AppColors.green
+                                    : AppColors.red,
                                 behavior: SnackBarBehavior.floating,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 margin: const EdgeInsets.all(20),
-                              ),
-                            );
+                                duration: const Duration(seconds: 4),
+                              );
+
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            }
+                          } catch (e) {
+                            if (context.mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Failed to upload CSV: $e',
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  backgroundColor:
+                                      AppColors.red.withOpacity(0.9),
+                                  behavior: SnackBarBehavior.floating,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  margin: const EdgeInsets.all(20),
+                                ),
+                              );
+                            }
+                          } finally {
+                            ref.read(isLoadingProvider.notifier).state = false;
                           }
-                        } finally {
-                          ref.read(isLoadingProvider.notifier).state = false;
-                        }
-                      },
-                icon: isLoading
-                    ? const SizedBox(
-                        width: 20,
-                        height: 20,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2,
-                          valueColor:
-                              AlwaysStoppedAnimation<Color>(AppColors.black),
+                        },
+                  icon: isLoading
+                      ? const SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(AppColors.black),
+                          ),
+                        )
+                      : const Icon(
+                          Icons.upload_file,
+                          color: AppColors.black,
                         ),
-                      )
-                    : const Icon(
-                        Icons.upload_file,
-                        color: AppColors.black,
-                      ),
-                label: Text(
-                  isLoading ? 'Uploading...' : 'Upload CSV',
-                  style: AppTextStyles.bold_16,
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: isLoading
-                      ? AppColors.turquiose.withOpacity(0.7)
-                      : AppColors.turquiose,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
+                  label: Text(
+                    isLoading ? 'Uploading...' : 'Upload CSV',
+                    style: AppTextStyles.bold_16,
                   ),
-                  shadowColor: Colors.black,
-                  elevation: 5,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: isLoading
+                        ? AppColors.turquiose.withOpacity(0.7)
+                        : AppColors.turquiose,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    shadowColor: Colors.black,
+                    elevation: 5,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

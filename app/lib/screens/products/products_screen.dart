@@ -11,7 +11,9 @@ import 'package:app/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 
 final csvDataProvider =
     StateNotifierProvider<CSVDataNotifier, List<CSVFileData>>((ref) {
@@ -47,22 +49,45 @@ class ProductsScreenState extends ConsumerState<ProductsScreen> {
     setState(() => isDownloading = true);
 
     try {
-      // Request storage permission
-      var status = await Permission.storage.request();
-      if (!status.isGranted) {
-        throw Exception('Storage permission denied');
+      // Request appropriate permissions based on Android version
+      if (Platform.isAndroid) {
+        if (await _requestStoragePermission() == false) {
+          throw Exception('Storage permission denied');
+        }
       }
 
+      // Get the products based on current filters
       final products = ref.read(filteredProductsProvider);
-      final csv =
-          generateCSV(products); // Implement this based on your data structure
 
-      // Get download directory
-      final dir = Directory('/storage/emulated/0/Download');
+      // Generate CSV content
+      final csv = generateCSV(products);
+
+      // Get the appropriate directory for saving files
+      final dir = await _getDownloadDirectory();
+      if (!await dir.exists()) {
+        await dir.create(recursive: true);
+      }
 
       final timestamp =
-          DateTime.now().toString().replaceAll(RegExp(r'[:.]'), '-');
-      final fileName = 'reviews_analysis_$timestamp.csv';
+          DateFormat('yyyy-MM-dd_HH-mm-ss').format(DateTime.now());
+      final searchText = ref.read(searchTextProvider);
+      final category = ref.read(selectedCategoryProvider);
+      final dateRange = ref.read(selectedDateRangeProvider);
+
+      // Create filename
+      String fileName = 'reviews_analysis_$timestamp';
+      if (searchText.isNotEmpty) {
+        fileName += '_search-${searchText.replaceAll(RegExp(r'[^\w\s-]'), '')}';
+      }
+      if (category != null && category != 'All Categories') {
+        fileName += '_cat-${category.replaceAll(RegExp(r'[^\w\s-]'), '')}';
+      }
+      if (dateRange != null) {
+        fileName +=
+            '_${DateFormat('MMdd').format(dateRange.start)}-${DateFormat('MMdd').format(dateRange.end)}';
+      }
+      fileName += '.csv';
+
       final filePath = '${dir.path}/$fileName';
 
       // Write file
@@ -73,8 +98,9 @@ class ProductsScreenState extends ConsumerState<ProductsScreen> {
       ref.read(csvDataProvider.notifier).addCSVFile(csv);
 
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('CSV file downloaded successfully'),
+        SnackBar(
+          content:
+              Text('CSV file downloaded successfully to Downloads/$fileName'),
           backgroundColor: Colors.green,
         ),
       );
@@ -91,22 +117,116 @@ class ProductsScreenState extends ConsumerState<ProductsScreen> {
     }
   }
 
+  Future<bool> _requestStoragePermission() async {
+    debugPrint('\n===== Storage Permission Debug =====');
+
+    // Check Android SDK version
+    final androidInfo = await DeviceInfoPlugin().androidInfo;
+    final sdkInt = androidInfo.version.sdkInt;
+    debugPrint('Android SDK Version: $sdkInt');
+
+    // For Android 11 (API 30) and above
+    if (sdkInt >= 30) {
+      debugPrint('Using MANAGE_EXTERNAL_STORAGE permission for Android 11+');
+
+      final isRestricted = await Permission.manageExternalStorage.isRestricted;
+      debugPrint('Is MANAGE_EXTERNAL_STORAGE restricted? $isRestricted');
+
+      final status = await Permission.manageExternalStorage.status;
+      debugPrint('Current MANAGE_EXTERNAL_STORAGE status: $status');
+
+      if (status.isDenied) {
+        debugPrint('Requesting MANAGE_EXTERNAL_STORAGE permission...');
+        final result = await Permission.manageExternalStorage.request();
+        debugPrint('Permission request result: $result');
+        return result.isGranted;
+      }
+
+      return status.isGranted;
+    }
+    // For Android 10 and below
+    else {
+      debugPrint('Using STORAGE permission for Android 10 and below');
+
+      final status = await Permission.storage.status;
+      debugPrint('Current STORAGE status: $status');
+
+      if (status.isDenied) {
+        debugPrint('Requesting STORAGE permission...');
+        final result = await Permission.storage.request();
+        debugPrint('Permission request result: $result');
+        return result.isGranted;
+      }
+
+      return status.isGranted;
+    }
+  }
+
+  Future<Directory> _getDownloadDirectory() async {
+    debugPrint('\n===== Download Directory Debug =====');
+
+    if (Platform.isAndroid) {
+      debugPrint('Platform: Android');
+      // First try to get the Downloads directory
+      try {
+        final downloadsDir = Directory('/storage/emulated/0/Download');
+        final exists = await downloadsDir.exists();
+        debugPrint('Downloads directory exists? $exists');
+        debugPrint('Downloads path: ${downloadsDir.path}');
+        return downloadsDir;
+      } catch (e) {
+        debugPrint('Error accessing Downloads directory: $e');
+        // Fallback to app's external storage directory
+        final directory = await getExternalStorageDirectory();
+        if (directory == null) {
+          debugPrint('External storage directory is null!');
+          throw Exception('Could not access external storage');
+        }
+        debugPrint('Using fallback directory: ${directory.path}');
+        return directory;
+      }
+    } else {
+      debugPrint('Platform: Other');
+      final directory = await getApplicationDocumentsDirectory();
+      debugPrint('Using documents directory: ${directory.path}');
+      return directory;
+    }
+  }
+
   String generateCSV(List<Product> products) {
     final buffer = StringBuffer();
 
     // Add headers
     buffer.writeln(
-        'Product ID,Product Name,Category,Overall Rating,Total Reviews,Positive %,Neutral %,Negative %');
+        'Product ID,Product Name,Category,Rating,Comment Text,User ID,Created Date,Sentiment,Review Count,Positive %,Neutral %,Negative %');
 
     for (var product in products) {
       final sentiments = calculateSentiments(product.comments);
-      buffer.writeln(
-          '${product.id},${product.name},${product.category},${product.rating},'
-          '${product.comments.length},${sentiments['positive']},'
-          '${sentiments['neutral']},${sentiments['negative']}');
+
+      for (var comment in product.comments) {
+        buffer.writeln('${_escapeCSV(product.id)},'
+            '${_escapeCSV(product.name)},'
+            '${_escapeCSV(product.category)},'
+            '${product.rating},'
+            '${_escapeCSV(comment.comment)},'
+            '${_escapeCSV(comment.userId)},'
+            '${DateFormat('yyyy-MM-dd HH:mm:ss').format(comment.createdAt)},'
+            '${comment.sentiment},'
+            '${product.comments.length},'
+            '${sentiments['positive']},'
+            '${sentiments['neutral']},'
+            '${sentiments['negative']}');
+      }
     }
 
     return buffer.toString();
+  }
+
+  String _escapeCSV(String value) {
+    if (value.contains(RegExp(r'[,"\n\r]'))) {
+      return '"${value.replaceAll('"', '""')}"';
+    }
+    return value;
   }
 
   Map<String, String> calculateSentiments(List<Comment> comments) {
@@ -120,10 +240,13 @@ class ProductsScreenState extends ConsumerState<ProductsScreen> {
       switch (comment.sentiment.toLowerCase()) {
         case 'positive':
           positive++;
+          break;
         case 'neutral':
           neutral++;
+          break;
         case 'negative':
           negative++;
+          break;
       }
     }
 
@@ -184,7 +307,7 @@ class ProductsScreenState extends ConsumerState<ProductsScreen> {
                     ),
                     const SizedBox(height: 24),
                     Expanded(
-                       child: filteredProducts.isEmpty
+                      child: filteredProducts.isEmpty
                           ? const Center(
                               child: Text(
                                 'No products found with matching reviews',
@@ -193,17 +316,17 @@ class ProductsScreenState extends ConsumerState<ProductsScreen> {
                               ),
                             )
                           : ListView.builder(
-                        itemCount: filteredProducts.length,
-                        itemBuilder: (context, index) {
-                          final product = filteredProducts[index];
-                          return Padding(
-                            padding: const EdgeInsets.only(bottom: 16),
-                            child: ProductReviewCard(
-                              productId: product.id,
+                              itemCount: filteredProducts.length,
+                              itemBuilder: (context, index) {
+                                final product = filteredProducts[index];
+                                return Padding(
+                                  padding: const EdgeInsets.only(bottom: 16),
+                                  child: ProductReviewCard(
+                                    productId: product.id,
+                                  ),
+                                );
+                              },
                             ),
-                          );
-                        },
-                      ),
                     ),
                   ],
                 ),

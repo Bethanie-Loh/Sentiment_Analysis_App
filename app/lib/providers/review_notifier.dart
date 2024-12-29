@@ -186,6 +186,7 @@ class ReviewNotifier extends StateNotifier<List<Product>> {
       }
     }
   }
+
 }
 
 String _generateUpdatedCSV(List<Product> products) {
